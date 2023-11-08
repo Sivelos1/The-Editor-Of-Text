@@ -25,17 +25,22 @@ module.exports = () => {
       }),
       new MiniCssExtractPlugin(),
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'Just Another Text Editor',
         short_name: 'JATE',
-        description: 'My awesome Progressive Web App!',
-        background_color: '#ffffff',
-        crossorigin: 'use-credentials',
+        description: 'A simple browser-based text editor.',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: './',
+        publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
-            size: '500x500'
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           },
-        ]
+        ],
       }),
       new InjectManifest({
         swSrc: './src/sw.js',
